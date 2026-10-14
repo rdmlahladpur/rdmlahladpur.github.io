@@ -154,7 +154,20 @@ h1,h2,h3{text-wrap:balance}
 .campus img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%}
 .campus figcaption{position:absolute;left:0;right:0;bottom:0;background:rgba(75,18,25,.88);color:#FFFFFF;padding:10px 16px;font-weight:500;line-height:1.4}
 .campus figcaption span{display:block;font-family:var(--display);font-weight:400;color:var(--gold-soft);font-size:1.05rem}
-.welcome,.board-panel{align-self:start}
+.welcome{align-self:start}
+.side-col{display:flex;flex-direction:column;gap:24px;align-self:start;min-width:0}
+.special-head{background:var(--gold);color:var(--maroon-deep)}
+.special-head .hi{color:var(--maroon-deep)}
+.special-body{display:grid;grid-template-columns:1fr 1fr}
+.special-col{padding:14px 16px;min-width:0}
+.special-col+.special-col{border-left:1px solid var(--line)}
+.special-label{display:inline-block;font-size:.75rem;font-weight:700;letter-spacing:.04em;color:var(--maroon);border:1px solid var(--maroon);border-radius:3px;padding:0 6px;margin-bottom:8px}
+.special-col p{margin:0;font-size:.97rem;line-height:1.6}
+.board .hi-line{display:block;color:var(--muted);font-size:.93rem;line-height:1.45;margin-top:2px}
+@media (max-width:420px){
+  .special-body{grid-template-columns:1fr}
+  .special-col+.special-col{border-left:0;border-top:1px solid var(--line)}
+}
 .welcome h2{margin:0 0 4px;font-size:1.5rem;color:var(--maroon);line-height:1.3}
 .welcome .hi{display:block;font-family:var(--display);font-size:1.2rem;color:var(--muted);margin-bottom:12px}
 .welcome p{margin:0 0 14px}
@@ -190,7 +203,7 @@ h1,h2,h3{text-wrap:balance}
   .home-grid{grid-template-columns:1fr}
   .campus{min-height:0;aspect-ratio:5/4;max-width:100%}
   .desk-panel{order:1}
-  .board-panel{order:2}
+  .side-col{order:2}
   .welcome{order:3}
 }
 @media (max-width:380px){
@@ -267,6 +280,8 @@ h1,h2,h3{text-wrap:balance}
 .notice-table .sno,.notice-table .dt{white-space:nowrap;font-variant-numeric:tabular-nums}
 .notice-table .sub{font-weight:500}
 .notice-table .sub small{display:block;font-weight:400;color:var(--muted);font-size:.9rem;margin-top:2px}
+.notice-table .sub-hi{border-left:1px dashed var(--line)}
+@media (max-width:640px){.notice-table .sub-hi{border-left:0;padding-top:6px!important}}
 .empty-note{margin:14px 0 0;color:var(--muted);font-size:.95rem}
 @media (max-width:640px){
   .notice-table thead{display:none}
@@ -439,10 +454,26 @@ h1,h2,h3{text-wrap:balance}
       </div>
     </div>
 
-    <div class="panel board-panel">
-      <div class="panel-head"><h2>Notice Board</h2><span class="hi" lang="hi">सूचना पट्ट</span></div>
-      <ul class="board" id="board"></ul>
-      <div class="panel-foot"><a class="more" href="#notices">View all notices</a></div>
+    <div class="side-col">
+      <div class="panel board-panel">
+        <div class="panel-head"><h2>Notice Board</h2><span class="hi" lang="hi">सूचना पट्ट</span></div>
+        <ul class="board" id="board"></ul>
+        <div class="panel-foot"><a class="more" href="#notices">View all notices</a></div>
+      </div>
+
+      <div class="panel special-panel">
+        <div class="panel-head special-head"><h2>Special Reference</h2><span class="hi" lang="hi">विशेष उल्लेख</span></div>
+        <div class="special-body">
+          <div class="special-col">
+            <span class="special-label">English</span>
+            <p>Assistant Professor <strong>Dr. Harshranjan Singh</strong> holds the post of <strong>Bursar (Arthpal)</strong> of Government Degree College, Lahladpur.</p>
+          </div>
+          <div class="special-col" lang="hi">
+            <span class="special-label">हिंदी</span>
+            <p>राजकीय डिग्री महाविद्यालय, लहलादपुर के <strong>बर्सर (अर्थपाल)</strong> पद पर सहायक प्राध्यापक <strong>डॉ. हर्षरंजन सिंह</strong> कार्यरत हैं।</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -543,7 +574,7 @@ h1,h2,h3{text-wrap:balance}
     <div class="sec-head"><h2 id="notice-h">Notices and Updates <span class="hi" lang="hi">सूचनाएँ</span></h2><p>Official notices of the college, newest first.</p></div>
     <div class="table-wrap">
       <table class="notice-table">
-        <thead><tr><th scope="col">S. No.</th><th scope="col">Date</th><th scope="col">Subject</th><th scope="col">Category</th></tr></thead>
+        <thead><tr><th scope="col">S. No.</th><th scope="col">Date</th><th scope="col">Subject (English)</th><th scope="col"><span lang="hi">विषय (हिंदी)</span></th><th scope="col">Category</th></tr></thead>
         <tbody id="noticeRows"></tbody>
       </table>
     </div>
@@ -667,11 +698,19 @@ h1,h2,h3{text-wrap:balance}
 
 <script>
 /* ---- Notices: add new notices at the top of this list ----
-   date: YYYY-MM-DD   category: Academic, Admission, Examination or General */
+   date: YYYY-MM-DD   category: Academic, Admission, Examination, Administrative or General
+   title/detail in English, titleHi/detailHi in Hindi */
 var NOTICES = [
+  { date: "2026-10-14", category: "Administrative",
+    title: "Bursar (Arthpal) of the college",
+    detail: "Assistant Professor Dr. Harshranjan Singh holds the post of Bursar (Arthpal) of Government Degree College, Lahladpur.",
+    titleHi: "महाविद्यालय के बर्सर (अर्थपाल)",
+    detailHi: "राजकीय डिग्री महाविद्यालय, लहलादपुर के बर्सर (अर्थपाल) पद पर सहायक प्राध्यापक डॉ. हर्षरंजन सिंह कार्यरत हैं।" },
   { date: "2026-10-09", category: "General",
     title: "College website launched",
-    detail: "All notices, admission updates and examination information of the college will be published on this website." }
+    detail: "All notices, admission updates and examination information of the college will be published on this website.",
+    titleHi: "महाविद्यालय की वेबसाइट का शुभारंभ",
+    detailHi: "महाविद्यालय की सभी सूचनाएँ, नामांकन और परीक्षा संबंधी जानकारी इस वेबसाइट पर प्रकाशित की जाएगी।" }
 ];
 
 (function(){
@@ -686,7 +725,8 @@ var NOTICES = [
     var p=parts(n.date);
     return '<li><span class="datebox"><span class="d">'+p.d+'</span><span class="m">'+p.m+' '+p.y+'</span></span>'+
       '<div><a href="#notices">'+esc(n.title)+'</a>'+(isNew(n.date)?'<span class="new">New</span>':'')+
-      '<br><span class="tag">'+esc(n.category)+'</span></div></li>';
+      (n.titleHi?'<span class="hi-line" lang="hi">'+esc(n.titleHi)+'</span>':'')+
+      '<span class="tag">'+esc(n.category)+'</span></div></li>';
   }).join("");
 
   var rows=document.getElementById("noticeRows");
@@ -694,10 +734,11 @@ var NOTICES = [
     var p=parts(n.date);
     return '<tr><td class="sno">'+(i+1)+'</td><td class="dt">'+p.d+' '+p.m+' '+p.y+'</td>'+
       '<td class="sub">'+esc(n.title)+(isNew(n.date)?'<span class="new">New</span>':'')+'<small>'+esc(n.detail)+'</small></td>'+
+      '<td class="sub sub-hi" lang="hi">'+esc(n.titleHi||"")+'<small>'+esc(n.detailHi||"")+'</small></td>'+
       '<td>'+esc(n.category)+'</td></tr>';
   }).join("");
 
-  var items=list.map(function(n){var p=parts(n.date);return '<a href="#notices">'+esc(n.title)+' ('+p.d+' '+p.m+' '+p.y+')</a>';}).join("");
+  var items=list.map(function(n){var p=parts(n.date);return '<a href="#notices">'+esc(n.title)+(n.titleHi?' / <span lang="hi">'+esc(n.titleHi)+'</span>':'')+' ('+p.d+' '+p.m+' '+p.y+')</a>';}).join("");
   document.getElementById("tickMove").innerHTML='<span>'+items+'</span><span class="dup" aria-hidden="true">'+items.replace(/<a /g,'<a tabindex="-1" ')+'</span>';
 
   var ticker=document.getElementById("ticker"),tb=document.getElementById("tickBtn");
