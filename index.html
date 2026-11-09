@@ -51,6 +51,7 @@
   color-scheme:light;
 }
 *,*::before,*::after{box-sizing:border-box}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 html{font-size:100%;scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px);-webkit-text-size-adjust:100%}
 html.fs-sm{font-size:93.75%}
 html.fs-lg{font-size:112.5%}
@@ -378,6 +379,109 @@ h1,h2,h3{text-wrap:balance}
 .to-top{position:fixed;right:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 16px);z-index:30;background:var(--marigold);color:var(--teal-night);text-decoration:none;font-weight:700;font-size:.85rem;padding:9px 16px;border-radius:999px;box-shadow:0 6px 18px -6px rgba(5,38,41,.5)}
 .to-top:hover{background:#F2B640}
 
+/* College banner (below the Principal's desk row) */
+.banner{margin:26px 0 0;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);background:var(--paper)}
+.banner img{width:100%;height:auto}
+
+/* Notice links to signed originals */
+.notice-table .orig{display:inline-block;margin-top:6px;font-size:.85rem;font-weight:600;color:var(--teal);text-decoration:none;border-bottom:1.5px solid var(--marigold)}
+.notice-table .orig:hover{color:var(--teal-deep);border-bottom-color:var(--teal)}
+
+/* Time table */
+.tt-meta{display:flex;flex-wrap:wrap;gap:8px 10px;margin:0 0 18px}
+.tt-meta span{background:var(--teal-wash);color:var(--teal-deep);font-weight:600;font-size:.9rem;border-radius:999px;padding:3px 12px}
+.tt{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);font-variant-numeric:tabular-nums}
+.tt th,.tt td{padding:11px 12px;text-align:center;border-bottom:1px solid var(--line);border-left:1px solid var(--line)}
+.tt th:first-child,.tt td:first-child{border-left:0}
+.tt thead th{background:var(--teal-deep);color:#FFFFFF;font-weight:600;font-size:.9rem;border-bottom:3px solid var(--marigold);border-left-color:rgba(255,255,255,.12)}
+.tt tbody th{text-align:left;font-weight:600;color:var(--teal-deep);background:var(--teal-wash);white-space:nowrap}
+.tt tbody th span{display:block;font-weight:500;font-size:.82rem;color:var(--muted)}
+.tt tbody tr:last-child th,.tt tbody tr:last-child td{border-bottom:0}
+.tt td{font-weight:600;color:var(--ink)}
+.tt td.pr{color:var(--marigold-ink);background:#FFFBF1}
+.tt td.tu{color:var(--teal)}
+.tt td.free{background:var(--wash)}
+.tt-note{margin:12px 0 0;font-size:.92rem;color:var(--muted)}
+.tt-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:32px;margin-top:36px;align-items:start}
+.tt-grid>*{min-width:0}
+.tt-grid h3{font-family:var(--display);font-weight:400;font-size:1.3rem;color:var(--teal-deep);margin:0 0 12px}
+.cs{width:100%;min-width:520px;border-collapse:separate;border-spacing:0;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;font-size:.95rem}
+.cs th,.cs td{padding:9px 12px;border-bottom:1px solid var(--line);text-align:left}
+.cs thead th{background:var(--teal-wash);color:var(--teal);font-weight:600;font-size:.85rem}
+.cs td.c{text-align:center;font-variant-numeric:tabular-nums}
+.cs tfoot td{font-weight:700;color:var(--teal-deep);background:var(--wash);border-bottom:0}
+.tt-side{background:var(--paper);border:1px solid var(--line);border-top:4px solid var(--teal);border-radius:var(--radius);padding:20px 22px;box-shadow:var(--shadow)}
+.tt-side ol{margin:0 0 18px;padding-left:1.3em}
+.tt-side li{margin-bottom:4px}
+@media (max-width:860px){.tt-grid{grid-template-columns:1fr;gap:24px}}
+
+/* Gallery */
+.albums{display:flex;flex-direction:column;gap:30px}
+.album{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 24px 26px;min-width:0}
+.album-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;margin:0 0 12px}
+.album-head h3{margin:0;font-family:var(--display);font-weight:400;font-size:1.45rem;line-height:1.3;color:var(--teal-deep)}
+.album-head h3 .hi{color:var(--marigold-ink);font-size:.85em;margin-left:8px}
+.album-date{display:inline-block;font-weight:600;font-size:.85rem;color:var(--teal-night);background:var(--marigold-soft);border:1px solid #F1DDB0;border-radius:999px;padding:2px 12px}
+.album-text{display:grid;grid-template-columns:1fr 1fr;gap:6px 28px;margin:0 0 18px}
+.album-text p{margin:0;font-size:.98rem;line-height:1.7}
+.album-text p[lang="hi"]{color:var(--muted)}
+.photos{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
+.photos a{display:block;position:relative;border-radius:10px;overflow:hidden;background:var(--wash);aspect-ratio:4/3}
+.photos img{width:100%;height:100%;object-fit:cover;transition:transform .25s ease}
+.photos a:hover img{transform:scale(1.04)}
+.photos a:focus-visible{outline-offset:3px}
+.photos .cap{position:absolute;left:0;right:0;bottom:0;padding:20px 10px 7px;font-size:.8rem;line-height:1.3;color:#FFFFFF;background:linear-gradient(to top,rgba(5,38,41,.85),rgba(5,38,41,0))}
+.vids{display:flex;flex-wrap:wrap;gap:14px;margin-top:16px}
+.vid{margin:0;max-width:100%}
+.vid video{display:block;height:300px;width:auto;max-width:100%;border-radius:10px;background:#000}
+.vid figcaption{font-size:.84rem;color:var(--muted);margin-top:6px;max-width:320px}
+.vid-label{display:flex;align-items:center;gap:8px;margin:20px 0 0;font-size:.88rem;font-weight:600;color:var(--teal)}
+.vid-label::before{content:"";width:0;height:0;border-left:9px solid var(--marigold);border-top:6px solid transparent;border-bottom:6px solid transparent}
+.news{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.news li{min-width:0}
+.news a{display:block;height:100%;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;text-decoration:none;color:var(--ink);box-shadow:var(--shadow)}
+.news a:hover{border-color:var(--teal)}
+.news .thumb{aspect-ratio:4/3;overflow:hidden;background:var(--wash);border-bottom:3px solid var(--marigold)}
+.news .thumb img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.news .txt{display:block;padding:12px 14px 14px}
+.news strong{display:block;font-weight:600;color:var(--teal-deep);line-height:1.4}
+.news small{display:block;color:var(--muted);font-size:.85rem;margin-top:4px}
+@media (max-width:760px){.album{padding:18px 16px 20px}.album-text{grid-template-columns:1fr;gap:10px}.news{grid-template-columns:1fr 1fr}.vid video{height:240px}}
+@media (max-width:480px){.photos{grid-template-columns:repeat(2,1fr);gap:8px}.photos .cap{display:none}.news{grid-template-columns:1fr}}
+
+/* Lightbox */
+.lb{border:0;padding:0;margin:auto;background:transparent;max-width:min(96vw,1400px);max-height:94vh;overflow:visible}
+.lb::backdrop{background:rgba(5,25,27,.92)}
+.lb-fig{margin:0;display:flex;flex-direction:column;align-items:center}
+.lb-fig img{max-width:min(96vw,1400px);max-height:82vh;width:auto;height:auto;border-radius:8px;background:#111}
+.lb-fig figcaption{color:#E6F0EF;text-align:center;font-size:.95rem;line-height:1.45;padding:10px 12px 0;max-width:70ch}
+.lb-btn{position:fixed;z-index:2;font:inherit;font-weight:700;font-size:1.05rem;line-height:1;color:var(--teal-night);background:var(--marigold);border:0;border-radius:999px;cursor:pointer;padding:12px 16px;box-shadow:0 4px 14px rgba(0,0,0,.35)}
+.lb-btn:hover{background:#F2B640}
+.lb-close{top:14px;right:14px}
+.lb-prev{left:12px;top:50%;transform:translateY(-50%)}
+.lb-next{right:12px;top:50%;transform:translateY(-50%)}
+.lb-count{position:fixed;top:20px;left:16px;color:#C4DCD9;font-size:.88rem}
+@media (max-width:560px){.lb-prev,.lb-next{top:auto;bottom:14px;transform:none}}
+@media (prefers-reduced-motion:reduce){.photos img{transition:none}}
+
+/* Important notice: Diwali and Chhath checking campaign (just below the Principal's desk) */
+.alert-notice{margin:26px 0 0;position:relative;overflow:hidden;border-radius:var(--radius);color:#FFFFFF;background-color:var(--teal-deep);background-image:var(--jaali),linear-gradient(120deg,var(--teal-night) 0%,var(--teal) 100%);background-size:32px 32px,32px 32px,auto;background-position:0 0,16px 16px,0 0;box-shadow:var(--shadow);border-top:5px solid var(--marigold);padding:26px 30px 24px}
+.alert-top{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin:0 0 14px}
+.alert-pill{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:.95rem;color:var(--teal-night);background:var(--marigold);border-radius:999px;padding:4px 14px 3px}
+.alert-pill::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--red);box-shadow:0 0 0 3px rgba(255,255,255,.55)}
+.alert-date{font-weight:600;font-size:.9rem;color:#FFFFFF;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:3px 12px 2px}
+.alert-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:18px 40px;align-items:start}
+.alert-grid>*{min-width:0}
+.alert-notice h2{margin:0 0 10px;font-family:var(--display);font-weight:400;line-height:1.35;color:#FFFFFF;font-size:clamp(1.45rem,2.6vw,2rem)}
+.alert-notice h3{margin:0 0 8px;font-family:var(--sans);font-weight:700;font-size:1.15rem;line-height:1.4;color:#FFFFFF}
+.alert-notice p{margin:0;font-size:1.08rem;line-height:1.75;color:#D9EAE8}
+.alert-notice [lang="hi"] p{font-size:1.15rem}
+.alert-warn{display:block;margin-top:10px;font-family:var(--display);font-size:clamp(1.3rem,2.2vw,1.6rem);color:var(--marigold)}
+.alert-en{border-left:1px solid rgba(255,255,255,.2);padding-left:32px}
+.alert-sign{margin:18px 0 0;padding-top:12px;border-top:1px solid rgba(255,255,255,.15);font-size:.95rem;color:#BFD9D6}
+.alert-sign strong{color:#FFFFFF;font-weight:600}
+@media (max-width:760px){.alert-notice{padding:20px 18px}.alert-grid{grid-template-columns:1fr}.alert-en{border-left:0;padding-left:0;border-top:1px solid rgba(255,255,255,.2);padding-top:16px}}
+
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .tick-move{animation:none;flex-wrap:wrap;white-space:normal;padding-block:6px}
@@ -432,6 +536,8 @@ h1,h2,h3{text-wrap:balance}
       <ul>
         <li><a href="#top">Home</a></li>
         <li><a href="#notices">Notices</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#timetable">Time Table</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#principal">Principal</a></li>
         <li><a href="#departments">Departments</a></li>
@@ -473,6 +579,24 @@ h1,h2,h3{text-wrap:balance}
     </div>
 
   </div>
+  <div class="wrap">
+    <aside class="alert-notice" aria-labelledby="alert-h">
+      <div class="alert-top"><span class="alert-pill" lang="hi">आवश्यक सूचना</span><span class="alert-pill" style="background:#FFFFFF">Important notice</span><span class="alert-date">Diwali–Chhath 2026</span></div>
+      <div class="alert-grid">
+        <div lang="hi">
+          <h2 id="alert-h">दीपावली एवं छठ पूजा की छुट्टी में महाविद्यालय में चेकिंग अभियान</h2>
+          <p>दीपावली और छठ पूजा की छुट्टी शुरू होते ही प्राचार्य डॉ. रामानुज सिंह द्वारा महाविद्यालय में चेकिंग अभियान शुरू कर दिया गया है।</p>
+          <span class="alert-warn">सावधान हो जाइए।</span>
+        </div>
+        <div class="alert-en">
+          <h3>Checking campaign at the college during the Diwali and Chhath holidays</h3>
+          <p>As soon as the Diwali and Chhath Puja holidays began, Principal Dr. Ramanuj Singh started a checking campaign at the college. Everyone is advised to stay alert.</p>
+        </div>
+      </div>
+      <p class="alert-sign" lang="hi"><strong>प्राचार्य</strong>, राजकीय डिग्री महाविद्यालय, लहलादपुर (सारण)</p>
+    </aside>
+  </div>
+  <div class="wrap"><figure class="banner"><img src="college-banner.jpg" alt="Government Degree College, Lahladpur (Saran), a constituent unit of Jai Prakash University, Chapra. Principal (Founder) Dr. Ramanuj Singh" width="1552" height="788"></figure></div>
 </section>
 
 <section class="section alt notices-top" id="notices" aria-labelledby="notice-h">
@@ -485,6 +609,107 @@ h1,h2,h3{text-wrap:balance}
       </table>
     </div>
     <p class="empty-note">For university notices, syllabus and examination schedules, see the <a href="https://www.jpv.ac.in" target="_blank" rel="noopener">Jai Prakash University website</a>.</p>
+  </div>
+</section>
+
+<section class="section" id="gallery" aria-labelledby="gal-h">
+  <div class="wrap">
+    <div class="sec-head"><h2 id="gal-h">Events and Gallery <span class="hi" lang="hi">गतिविधियाँ एवं फोटो गैलरी</span></h2><p>Photos and videos from college events, newest first. Tap a photo to see it in full size.</p></div>
+    <div class="albums">
+      <article class="album" id="album-sahyog-shivir">
+        <div class="album-head"><h3>Vidyarthi Sahyog Shivir <span class="hi" lang="hi">विद्यार्थी सहयोग शिविर</span></h3><span class="album-date">22 September 2026</span></div>
+        <div class="album-text"><p>On 22 September 2026, a Vidyarthi Sahyog Shivir (student support camp) was held at the college at 11:30 AM, presided over by Principal Dr. Ramanuj Singh. A total of 112 students took part and put their concerns about their studies and basic facilities before the Principal, in writing and in person. The Principal guided the students, encouraged them to study regularly, and announced that their problems would be resolved within one month.</p><p lang="hi">दिनांक 22 सितंबर 2026 (मंगलवार) को पूर्वाह्न 11:30 बजे प्राचार्य डॉ. रामानुज सिंह की अध्यक्षता में महाविद्यालय में विद्यार्थी सहयोग शिविर का आयोजन किया गया। शिविर में कुल 112 छात्र-छात्राओं ने भाग लिया और अपनी शैक्षणिक एवं मूलभूत सुविधाओं से संबंधित समस्याएँ लिखित एवं मौखिक रूप से प्राचार्य के समक्ष रखीं। प्राचार्य महोदय ने विद्यार्थियों का मार्गदर्शन करते हुए उन्हें नियमित अध्ययन के लिए प्रोत्साहित किया तथा एक माह के भीतर समस्याओं के समाधान की घोषणा की।</p></div>
+        <ul class="photos"><li><a href="g-sahyog-shivir-1.jpg" data-cap="Teachers at the Vidyarthi Sahyog Shivir / विद्यार्थी सहयोग शिविर में शिक्षकगण"><img src="t-sahyog-shivir-1.jpg" alt="Teachers at the Vidyarthi Sahyog Shivir" width="640" height="480" loading="lazy"><span class="cap">Teachers at the Vidyarthi Sahyog Shivir</span></a></li></ul>
+        <p class="vid-label">Video</p>
+        <div class="vids"><figure class="vid"><video controls playsinline preload="none" poster="g-poster-sahyog-shivir-video.jpg" width="478" height="850"><source src="video-sahyog-shivir.mp4" type="video/mp4"></video><figcaption>Students being guided at the camp <span lang="hi">/ शिविर में विद्यार्थियों का मार्गदर्शन</span></figcaption></figure></div>
+      </article>
+      <article class="album" id="album-independence-day">
+        <div class="album-head"><h3>Independence Day 2026 <span class="hi" lang="hi">स्वतंत्रता दिवस समारोह</span></h3><span class="album-date">15 August 2026</span></div>
+        <div class="album-text"><p>The 80th Independence Day was celebrated at the college on 15 August 2026, presided over by Principal Dr. Ramanuj Singh. The national flag was hoisted on the college campus at 9 AM.</p><p lang="hi">दिनांक 15 अगस्त 2026 को प्राचार्य डॉ. रामानुज सिंह की अध्यक्षता में महाविद्यालय में 80वें स्वतंत्रता दिवस का समारोह आयोजित किया गया। महाविद्यालय प्रांगण में प्रातः 9 बजे झंडोत्तोलन किया गया।</p></div>
+        <ul class="photos"><li><a href="g-independence-day-1.jpg" data-cap="Flag hoisting on the college campus / महाविद्यालय प्रांगण में झंडोत्तोलन"><img src="t-independence-day-1.jpg" alt="Flag hoisting on the college campus" width="480" height="640" loading="lazy"><span class="cap">Flag hoisting on the college campus</span></a></li><li><a href="g-independence-day-2.jpg" data-cap="The college family at the flag hoisting / झंडोत्तोलन के अवसर पर महाविद्यालय परिवार"><img src="t-independence-day-2.jpg" alt="The college family at the flag hoisting" width="640" height="480" loading="lazy"><span class="cap">The college family at the flag hoisting</span></a></li><li><a href="g-independence-day-3.jpg" data-cap="Address on Independence Day / स्वतंत्रता दिवस पर संबोधन"><img src="t-independence-day-3.jpg" alt="Address on Independence Day" width="480" height="640" loading="lazy"><span class="cap">Address on Independence Day</span></a></li><li><a href="g-independence-day-invitation.jpg" data-cap="Invitation card for the celebration / समारोह का आमंत्रण-पत्र"><img src="t-independence-day-invitation.jpg" alt="Invitation card for the celebration" width="640" height="426" loading="lazy"><span class="cap">Invitation card for the celebration</span></a></li></ul>
+        <p class="vid-label">Videos</p>
+        <div class="vids"><figure class="vid"><video controls playsinline preload="none" poster="g-poster-independence-day-video-1.jpg" width="848" height="478"><source src="video-independence-day-1.mp4" type="video/mp4"></video><figcaption>Independence Day at the college, clip 1 <span lang="hi">/ स्वतंत्रता दिवस समारोह, क्लिप 1</span></figcaption></figure><figure class="vid"><video controls playsinline preload="none" poster="g-poster-independence-day-video-2.jpg" width="848" height="478"><source src="video-independence-day-2.mp4" type="video/mp4"></video><figcaption>Independence Day at the college, clip 2 <span lang="hi">/ स्वतंत्रता दिवस समारोह, क्लिप 2</span></figcaption></figure><figure class="vid"><video controls playsinline preload="none" poster="g-poster-independence-day-video-3.jpg" width="848" height="478"><source src="video-independence-day-3.mp4" type="video/mp4"></video><figcaption>Independence Day at the college, clip 3 <span lang="hi">/ स्वतंत्रता दिवस समारोह, क्लिप 3</span></figcaption></figure><figure class="vid"><video controls playsinline preload="none" poster="g-poster-independence-day-video-4.jpg" width="848" height="478"><source src="video-independence-day-4.mp4" type="video/mp4"></video><figcaption>Independence Day at the college, clip 4 <span lang="hi">/ स्वतंत्रता दिवस समारोह, क्लिप 4</span></figcaption></figure></div>
+      </article>
+      <article class="album" id="album-nasha-mukti">
+        <div class="album-head"><h3>Nasha Mukti Abhiyan <span class="hi" lang="hi">नशा मुक्ति अभियान</span></h3><span class="album-date">2 August 2026</span></div>
+        <div class="album-text"><p>On 2 August 2026, a de-addiction awareness campaign (Nasha Mukti Abhiyan) was conducted at the college under the chairmanship of Principal Dr. Ramanuj Singh.</p><p lang="hi">दिनांक 2 अगस्त 2026 को प्राचार्य डॉ. रामानुज सिंह की अध्यक्षता में राजकीय डिग्री महाविद्यालय, लहलादपुर में नशा मुक्ति अभियान चलाया गया।</p></div>
+        <ul class="photos"><li><a href="g-nasha-mukti-1.jpg" data-cap="Students of the college during the campaign / अभियान में महाविद्यालय के छात्र-छात्राएँ"><img src="t-nasha-mukti-1.jpg" alt="Students of the college during the campaign" width="640" height="360" loading="lazy"><span class="cap">Students of the college during the campaign</span></a></li></ul>
+        <p class="vid-label">Video</p>
+        <div class="vids"><figure class="vid"><video controls playsinline preload="none" poster="g-poster-nasha-mukti-video.jpg" width="848" height="478"><source src="video-nasha-mukti.mp4" type="video/mp4"></video><figcaption>Students during the Nasha Mukti Abhiyan <span lang="hi">/ नशा मुक्ति अभियान में छात्र-छात्राएँ</span></figcaption></figure></div>
+      </article>
+      <article class="album" id="album-inauguration">
+        <div class="album-head"><h3>Inauguration of the college <span class="hi" lang="hi">महाविद्यालय का उद्घाटन</span></h3><span class="album-date">15 July 2026</span></div>
+        <div class="album-text"><p>The inauguration ceremony of Government Degree College, Lahladpur (Saran) was held on 15 July 2026, presided over by Principal Dr. Ramanuj Singh. The Hon&#x27;ble Member of Parliament from Maharajganj, Shri Janardan Singh Sigriwal, and the Ekma MLA, Shri Manoranjan Singh (alias Dhumal Singh), inaugurated the college by lighting the lamp in the presence of the Principal. The Circle Officer of Lahladpur, the Welfare Officer of Chhapra and other dignitaries attended the ceremony.</p><p lang="hi">राजकीय डिग्री महाविद्यालय, लहलादपुर (सारण) का उद्घाटन समारोह प्राचार्य डॉ. रामानुज सिंह की अध्यक्षता में दिनांक 15 जुलाई 2026 को आयोजित किया गया। माननीय महाराजगंज सांसद श्री जनार्दन सिंह सिग्रीवाल एवं एकमा विधायक श्री मनोरंजन सिंह (उर्फ़ धूमल सिंह) ने प्राचार्य की उपस्थिति में दीप प्रज्वलित कर महाविद्यालय का उद्घाटन किया। समारोह में अंचलाधिकारी, लहलादपुर, कल्याण पदाधिकारी, छपरा एवं अन्य गणमान्य लोग उपस्थित थे।</p></div>
+        <ul class="photos"><li><a href="g-inauguration-lamp.jpg" data-cap="Lighting of the lamp at the inauguration / उद्घाटन के अवसर पर दीप प्रज्वलन"><img src="t-inauguration-lamp.jpg" alt="Lighting of the lamp at the inauguration" width="640" height="483" loading="lazy"><span class="cap">Lighting of the lamp at the inauguration</span></a></li><li><a href="g-inauguration-welcome.jpg" data-cap="Welcoming the guests / अतिथियों का स्वागत"><img src="t-inauguration-welcome.jpg" alt="Welcoming the guests" width="640" height="360" loading="lazy"><span class="cap">Welcoming the guests</span></a></li><li><a href="g-inauguration-audience.jpg" data-cap="Audience at the ceremony / समारोह में उपस्थित लोग"><img src="t-inauguration-audience.jpg" alt="Audience at the ceremony" width="640" height="360" loading="lazy"><span class="cap">Audience at the ceremony</span></a></li></ul>
+        <p class="vid-label">Videos</p>
+        <div class="vids"><figure class="vid"><video controls playsinline preload="none" poster="g-poster-inauguration-video-1.jpg" width="478" height="850"><source src="video-inauguration-1.mp4" type="video/mp4"></video><figcaption>Guests being welcomed at the inauguration <span lang="hi">/ उद्घाटन समारोह में अतिथियों का स्वागत</span></figcaption></figure><figure class="vid"><video controls playsinline preload="none" poster="g-poster-inauguration-video-2.jpg" width="848" height="478"><source src="video-inauguration-2.mp4" type="video/mp4"></video><figcaption>Guests being welcomed at the inauguration <span lang="hi">/ उद्घाटन समारोह में अतिथियों का स्वागत</span></figcaption></figure></div>
+      </article>
+      <article class="album" id="album-admission">
+        <div class="album-head"><h3>Admission <span class="hi" lang="hi">नामांकन</span></h3><span class="album-date">Session 2026–30</span></div>
+        <div class="album-text"><p>Principal Dr. Ramanuj Singh and Computer Operator Shri Sarfaraz Ahmed admitting students to Government Degree College, Lahladpur, for the 2026–30 session.</p><p lang="hi">राजकीय डिग्री महाविद्यालय, लहलादपुर में सत्र 2026–30 के लिए छात्र-छात्राओं का नामांकन करते हुए प्राचार्य डॉ. रामानुज सिंह एवं कंप्यूटर ऑपरेटर श्री सरफ़राज़ अहमद।</p></div>
+        <ul class="photos"><li><a href="g-admission-1.jpg" data-cap="Students at the time of admission / नामांकन के समय छात्र-छात्राएँ"><img src="t-admission-1.jpg" alt="Students at the time of admission" width="640" height="288" loading="lazy"><span class="cap">Students at the time of admission</span></a></li><li><a href="g-admission-2.jpg" data-cap="Admission in progress / नामांकन की प्रक्रिया"><img src="t-admission-2.jpg" alt="Admission in progress" width="640" height="288" loading="lazy"><span class="cap">Admission in progress</span></a></li></ul>
+      </article>
+      <article class="album" id="album-college-family">
+        <div class="album-head"><h3>College family and classes <span class="hi" lang="hi">महाविद्यालय परिवार एवं कक्षाएँ</span></h3></div>
+        <ul class="photos"><li><a href="g-college-family.jpg" data-cap="Teachers and staff of the college / महाविद्यालय के शिक्षक एवं कर्मचारी"><img src="t-college-family.jpg" alt="Teachers and staff of the college" width="640" height="480" loading="lazy"><span class="cap">Teachers and staff of the college</span></a></li><li><a href="g-classroom.jpg" data-cap="A class in progress / कक्षा का एक दृश्य"><img src="t-classroom.jpg" alt="A class in progress" width="480" height="640" loading="lazy"><span class="cap">A class in progress</span></a></li></ul>
+      </article>
+    </div>
+    <h3 class="sub-head">In the News <span class="hi" lang="hi">समाचार पत्रों में</span></h3>
+    <ul class="news"><li><a href="news-dainik-jagran-2026-07-16.jpg" data-cap="लहलादपुर में डिग्री महाविद्यालय का हुआ उद्घाटन (Dainik Jagran, Patna, 16 July 2026)"><span class="thumb"><img src="t-news-dainik-jagran-2026-07-16.jpg" alt="Newspaper clipping: लहलादपुर में डिग्री महाविद्यालय का हुआ उद्घाटन" loading="lazy"></span><span class="txt"><strong lang="hi">लहलादपुर में डिग्री महाविद्यालय का हुआ उद्घाटन</strong><small>Dainik Jagran, Patna, 16 July 2026</small></span></a></li><li><a href="news-news-lahladpur-higher-education.jpg" data-cap="लहलादपुर: अब घर के पास मिलेगी उच्च शिक्षा (Report on the inauguration)"><span class="thumb"><img src="t-news-news-lahladpur-higher-education.jpg" alt="Newspaper clipping: लहलादपुर: अब घर के पास मिलेगी उच्च शिक्षा" loading="lazy"></span><span class="txt"><strong lang="hi">लहलादपुर: अब घर के पास मिलेगी उच्च शिक्षा</strong><small>Report on the inauguration</small></span></a></li><li><a href="news-hindustan-apna-saran.jpg" data-cap="नौ प्रखंडों के नए डिग्री कॉलेजों में पढ़ाई शुरू (Hindustan, Apna Saran)"><span class="thumb"><img src="t-news-hindustan-apna-saran.jpg" alt="Newspaper clipping: नौ प्रखंडों के नए डिग्री कॉलेजों में पढ़ाई शुरू" loading="lazy"></span><span class="txt"><strong lang="hi">नौ प्रखंडों के नए डिग्री कॉलेजों में पढ़ाई शुरू</strong><small>Hindustan, Apna Saran</small></span></a></li></ul>
+  </div>
+</section>
+
+<section class="section alt" id="timetable" aria-labelledby="tt-h">
+  <div class="wrap">
+    <div class="sec-head"><h2 id="tt-h">Time Table <span class="hi" lang="hi">समय सारणी</span></h2><p>Weekly class time table for UG CBCS Semester 1, issued by the Principal on 23 July 2026.</p></div>
+    <div class="tt-meta"><span>UG CBCS Semester 1</span><span>Session 2026–30</span><span>Classes 10:30 AM to 3:30 PM</span></div>
+    <div class="table-wrap">
+      <table class="tt">
+        <caption class="sr-only">Semester 1 weekly time table</caption>
+        <thead><tr><th scope="col">Day <span lang="hi">दिन</span></th><th scope="col">10:30–11:30</th><th scope="col">11:30–12:30</th><th scope="col">12:30–1:30</th><th scope="col">1:30–2:30</th><th scope="col">2:30–3:30</th></tr></thead>
+        <tbody>
+            <tr><th scope="row">Monday<span lang="hi">सोमवार</span></th><td>MJC-1</td><td>MIC-1</td><td>MDC-1</td><td>SEC-1</td><td class="pr">SEC-1(P)</td></tr>
+            <tr><th scope="row">Tuesday<span lang="hi">मंगलवार</span></th><td>MJC-1</td><td>MIC-1</td><td>MDC-1</td><td>VAC-1</td><td class="pr">VAC-1(P)</td></tr>
+            <tr><th scope="row">Wednesday<span lang="hi">बुधवार</span></th><td>MJC-1</td><td>MIC-1</td><td>MDC-1</td><td>AEC-1</td><td class="pr">SEC-1(P)</td></tr>
+            <tr><th scope="row">Thursday<span lang="hi">गुरुवार</span></th><td>MJC-1</td><td>MIC-1</td><td>MDC-1</td><td>AEC-1</td><td class="pr">VAC-1(P)</td></tr>
+            <tr><th scope="row">Friday<span lang="hi">शुक्रवार</span></th><td>MJC-1</td><td class="tu">MJC-1(T)</td><td class="tu">MDC-1(T)</td><td class="tu">AEC-1(T)</td><td class="pr">SEC-1(P)</td></tr>
+            <tr><th scope="row">Saturday<span lang="hi">शनिवार</span></th><td>MJC-1</td><td class="tu">MIC-1(T)</td><td colspan="2" class="pr">VAC-1(P)</td><td class="free"></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tt-note">P = Practical, T = Tutorial. On Saturday, VAC-1 practical runs from 12:30 to 2:30.</p>
+    <div class="tt-grid">
+      <div>
+        <h3>Course structure, Semester 1</h3>
+        <div class="table-wrap">
+          <table class="cs">
+            <thead><tr><th scope="col">S. No.</th><th scope="col">Course</th><th scope="col">Code</th><th scope="col">L-T-P</th><th scope="col">Credit</th><th scope="col">Marks</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Major Course-1</td><td>MJC-1</td><td class="c">6-1-0</td><td class="c">6</td><td class="c">30+70=100</td></tr>
+              <tr><td>2</td><td>Minor Course-1</td><td>MIC-1</td><td class="c">4-1-0</td><td class="c">3</td><td class="c">30+70=100</td></tr>
+              <tr><td>3</td><td>Multidisciplinary Course-1</td><td>MDC-1</td><td class="c">4-1-0</td><td class="c">3</td><td class="c">30+70=100</td></tr>
+              <tr><td>4</td><td>MIL (Modern Indian Language)</td><td>AEC-1</td><td class="c">2-1-0</td><td class="c">2</td><td class="c">30+70=100</td></tr>
+              <tr><td>5</td><td>Skill Enhancement Course</td><td>SEC-1</td><td class="c">1-0-3</td><td class="c">3</td><td class="c">30+70=100</td></tr>
+              <tr><td>6</td><td>Value Added Course</td><td>VAC-1</td><td class="c">1-0-3</td><td class="c">3</td><td class="c">30+70=100</td></tr>
+            </tbody>
+            <tfoot><tr><td colspan="4">Total credit</td><td class="c">20</td><td></td></tr></tfoot>
+          </table>
+        </div>
+        <p class="tt-note">Proposed course structure for the four-year undergraduate programme under the CBCS system. L-T-P = Lecture, Tutorial, Practical.</p>
+      </div>
+      <div class="tt-side">
+        <h3>Major (MJC) subjects</h3>
+        <ol>
+          <li>Hindi <span lang="hi">(हिंदी)</span></li>
+          <li>English <span lang="hi">(अंग्रेज़ी)</span></li>
+          <li>History <span lang="hi">(इतिहास)</span></li>
+          <li>Political Science <span lang="hi">(राजनीति विज्ञान)</span></li>
+          <li>Economics <span lang="hi">(अर्थशास्त्र)</span></li>
+          <li>Sociology <span lang="hi">(समाजशास्त्र)</span></li>
+        </ol>
+        <div class="btn-row"><a class="btn btn-primary" href="doc-time-table-sem1-2026-30.pdf" target="_blank" rel="noopener">Download signed time table (PDF)</a></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -552,6 +777,7 @@ h1,h2,h3{text-wrap:balance}
             <tr><th scope="row">Type</th><td>Government constituent college</td></tr>
             <tr><th scope="row">University</th><td>Jai Prakash University, Chapra</td></tr>
             <tr><th scope="row">Established</th><td>1 June 2026</td></tr>
+            <tr><th scope="row">Inaugurated</th><td>15 July 2026</td></tr>
             <tr><th scope="row">Programme</th><td>Bachelor of Arts (B.A.)</td></tr>
             <tr><th scope="row">Subjects</th><td>Hindi, English, History, Political Science, Economics, Sociology</td></tr>
             <tr><th scope="row">Principal</th><td>Dr. Ramanuj Singh</td></tr>
@@ -698,6 +924,8 @@ h1,h2,h3{text-wrap:balance}
       <h2>Quick Links</h2>
       <ul>
         <li><a href="#notices">Notices</a></li>
+        <li><a href="#gallery">Events and Gallery</a></li>
+        <li><a href="#timetable">Time Table</a></li>
         <li><a href="#about">About the College</a></li>
         <li><a href="#principal">Principal's Message</a></li>
         <li><a href="#departments">Departments</a></li>
@@ -728,12 +956,20 @@ h1,h2,h3{text-wrap:balance}
     <div class="wrap">
       <span>© 2026 Government Degree College, Lahladpur, Saran. All rights reserved.</span>
       <span>Website developed and maintained by Shivam Kumar, Assistant Professor (Sociology)</span>
-      <span>Last updated: 15 October 2026</span>
+      <span>Last updated: 9 November 2026</span>
     </div>
   </div>
 </footer>
 
 <a class="to-top" href="#top" id="toTop" hidden>Top</a>
+
+<dialog class="lb" id="lb" aria-label="Photo viewer">
+  <span class="lb-count" id="lbCount"></span>
+  <button class="lb-btn lb-close" type="button" id="lbClose" aria-label="Close">Close</button>
+  <button class="lb-btn lb-prev" type="button" id="lbPrev" aria-label="Previous photo">&#8249; Prev</button>
+  <button class="lb-btn lb-next" type="button" id="lbNext" aria-label="Next photo">Next &#8250;</button>
+  <figure class="lb-fig"><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
+</dialog>
 
 <script>
 /* ---- Notices: add new notices at the top of this list ----
@@ -765,6 +1001,13 @@ var NOTICES = [
     detail: "Dr. Preety Kumari, Assistant Professor, Department of Economics, is authorised for the Welcome Ceremony at Government Degree College, Lahladpur (Saran) until further orders. Ref. No. 68 RDM Lah/26, by order of the Principal.",
     titleHi: "स्वागत समारोह: डॉ. प्रीति कुमारी",
     detailHi: "अर्थशास्त्र विभाग की सहायक प्राध्यापक डॉ. प्रीति कुमारी को अगले आदेश तक राजकीय डिग्री महाविद्यालय, लहलादपुर (सारण) में स्वागत समारोह हेतु अधिकृत किया जाता है। पत्रांक 68 RDM Lah/26, प्राचार्य के आदेशानुसार।" },
+  {"date": "", "dateLabel": "Diwali–Chhath 2026", "category": "Administrative", "title": "Checking campaign at the college during the Diwali and Chhath holidays", "detail": "As soon as the Diwali and Chhath Puja holidays began, Principal Dr. Ramanuj Singh started a checking campaign at the college. Everyone is advised to stay alert.", "titleHi": "दीपावली एवं छठ पूजा की छुट्टी में महाविद्यालय में चेकिंग अभियान", "detailHi": "दीपावली और छठ पूजा की छुट्टी शुरू होते ही प्राचार्य डॉ. रामानुज सिंह द्वारा महाविद्यालय में चेकिंग अभियान शुरू कर दिया गया है। सावधान हो जाइए।"},
+  {"date": "2026-09-07", "category": "General", "title": "Vidyarthi Sahyog Shivir on 22 September 2026", "detail": "A special camp for students' problems and complaints will be held on the college campus on Tuesday, 22 September 2026. It will take up academic work, scholarships, certificates and facilities such as drinking water, toilets, library, laboratory, food, safety and transport. Full attendance of all students, teachers and staff is compulsory. Ref. No. 47 RDM Lah/26.", "titleHi": "22 सितंबर 2026 को विद्यार्थी सहयोग शिविर", "detailHi": "महाविद्यालय प्रांगण में विद्यार्थियों की समस्याओं एवं शिकायतों के समाधान हेतु दिनांक 22.09.2026 (मंगलवार) को विशेष शिविर का आयोजन किया गया है, जिसमें शैक्षणिक गतिविधियाँ, छात्रवृत्ति, विभिन्न प्रमाण-पत्र, पेयजल, शौचालय, पुस्तकालय, प्रयोगशाला, भोजन, सुरक्षा एवं परिवहन से संबंधित समस्याओं पर विचार होगा। सभी छात्र-छात्राओं, शिक्षक-शिक्षिकाओं एवं कर्मियों की शत-प्रतिशत उपस्थिति अनिवार्य है। पत्रांक 47 RDM Lah/26।", "link": "doc-notice-ref47-2026-09-07.jpg", "linkText": "View signed notice"},
+  {"date": "2026-08-13", "category": "General", "title": "Independence Day flag hoisting at 9 AM on 15 August 2026", "detail": "All teachers, non-teaching staff and students are informed that the Independence Day flag hoisting will be held on the college campus at 9 AM on 15 August 2026. Sweets and refreshments have been arranged after the flag hoisting. Attendance is compulsory for all. Ref. No. 35.", "titleHi": "15 अगस्त 2026 को प्रातः 9 बजे झंडोत्तोलन", "detailHi": "महाविद्यालय के सभी शिक्षक-शिक्षिकाओं, शिक्षकेतर कर्मचारियों एवं छात्र-छात्राओं को सूचित किया जाता है कि 15 अगस्त 2026 को स्वतंत्रता दिवस का झंडोत्तोलन कार्यक्रम महाविद्यालय प्रांगण में प्रातः 9 बजे से होगा। झंडोत्तोलन के बाद मिठाई वितरण एवं अल्पाहार की व्यवस्था की गई है। अतः सभी की उपस्थिति अनिवार्य है। पत्रांक 35।", "link": "doc-notice-ref35-2026-08-13.jpg", "linkText": "View signed notice"},
+  {"date": "2026-08-11", "category": "Academic", "title": "Regular classes from 12 August 2026; attendance compulsory", "detail": "Regular classes in all subjects begin in full from 12 August 2026, and attendance is compulsory for all students. The registration of students who remain absent continuously may be cancelled, and the decision will not be reconsidered. Students must follow the time table and arrive on time; latecomers will not be allowed into class. Indiscipline on the campus may lead to disciplinary action. By order of the Principal.", "titleHi": "12 अगस्त 2026 से नियमित कक्षाएँ एवं अनिवार्य उपस्थिति", "detailHi": "महाविद्यालय के सभी छात्र-छात्राओं को सूचित किया जाता है कि 12 अगस्त 2026 से सभी संकायों की नियमित कक्षाएँ पूर्ण रूप से संचालित की जाएँगी तथा सभी विद्यार्थियों की उपस्थिति अनिवार्य है। लगातार अनुपस्थित रहने वाले छात्र-छात्राओं का पंजीकरण रद्द किया जा सकता है, जिस पर दोबारा विचार नहीं किया जाएगा। सभी विद्यार्थी समय सारणी के अनुसार समय पर कक्षाओं में उपस्थित हों; देर से आने वालों को कक्षा में प्रवेश की अनुमति नहीं दी जाएगी। परिसर में अनुशासनहीनता पाए जाने पर दंडात्मक कार्रवाई की जा सकती है। आदेशानुसार, प्राचार्य।"},
+  {"date": "2026-08-02", "category": "General", "title": "Nasha Mukti Abhiyan held at the college", "detail": "A de-addiction awareness campaign (Nasha Mukti Abhiyan) was conducted at the college under the chairmanship of Principal Dr. Ramanuj Singh.", "titleHi": "महाविद्यालय में नशा मुक्ति अभियान", "detailHi": "प्राचार्य डॉ. रामानुज सिंह की अध्यक्षता में महाविद्यालय में नशा मुक्ति अभियान चलाया गया।", "link": "#album-nasha-mukti", "linkText": "See photos and video"},
+  {"date": "2026-07-23", "category": "Academic", "title": "Semester 1 time table (session 2026–30) released", "detail": "The Principal has made the daily class time table for UG CBCS Semester 1 public. All assistant professors will take classes according to this time table, and the Principal will support them in teaching and learning.", "titleHi": "सेमेस्टर-1 (सत्र 2026–30) का क्लास रूटीन जारी", "detailHi": "प्राचार्य महोदय द्वारा स्नातक (CBCS) सेमेस्टर-1 का दैनिक क्लास रूटीन सार्वजनिक कर दिया गया है। सभी सहायक प्राध्यापक इसी रूटीन के अनुसार कक्षाएँ लेंगे तथा पठन-पाठन में प्राचार्य महोदय का सहयोग रहेगा।", "link": "#timetable", "linkText": "View time table"},
+  {"date": "2026-07-15", "category": "General", "title": "College inaugurated", "detail": "Government Degree College, Lahladpur was inaugurated on 15 July 2026 by Maharajganj MP Shri Janardan Singh Sigriwal and Ekma MLA Shri Manoranjan Singh (alias Dhumal Singh), presided over by Principal Dr. Ramanuj Singh.", "titleHi": "महाविद्यालय का उद्घाटन", "detailHi": "प्राचार्य डॉ. रामानुज सिंह की अध्यक्षता में माननीय महाराजगंज सांसद श्री जनार्दन सिंह सिग्रीवाल एवं एकमा विधायक श्री मनोरंजन सिंह (उर्फ़ धूमल सिंह) ने दिनांक 15 जुलाई 2026 को महाविद्यालय का उद्घाटन किया।", "link": "#album-inauguration", "linkText": "See photos and videos"},
   { date: "2026-10-09", category: "General",
     title: "College website launched",
     detail: "All notices, admission updates and examination information of the college will be published on this website.",
@@ -775,13 +1018,14 @@ var NOTICES = [
 (function(){
   var MONTHS=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
   function parts(s){var p=s.split("-");return {y:p[0],m:MONTHS[+p[1]-1],d:p[2]};}
-  function isNew(s){var t=new Date(s+"T00:00:00");return (Date.now()-t.getTime())/864e5<=30;}
+  function when(n){if(!n.date)return n.dateLabel||"";var p=parts(n.date);return p.d+" "+p.m+" "+p.y;}
+  function isNew(s){if(!s)return true;var t=new Date(s+"T00:00:00");return (Date.now()-t.getTime())/864e5<=30;}
   function esc(s){var d=document.createElement("div");d.textContent=s;return d.innerHTML;}
-  var list=NOTICES.slice().sort(function(a,b){return a.date<b.date?1:a.date>b.date?-1:0;});
+  var list=NOTICES.slice().sort(function(a,b){if(!a.date!==!b.date)return a.date?1:-1;return a.date<b.date?1:a.date>b.date?-1:0;});
 
   var board=document.getElementById("board");
   if(board)board.innerHTML=list.slice(0,5).map(function(n){
-    var p=parts(n.date);
+    var p=n.date?parts(n.date):{d:"\u2022",m:n.dateLabel||"",y:""};
     return '<li><span class="datebox"><span class="d">'+p.d+'</span><span class="m">'+p.m+' '+p.y+'</span></span>'+
       '<div><a href="#notices">'+esc(n.title)+'</a>'+(isNew(n.date)?'<span class="new">New</span>':'')+
       (n.titleHi?'<span class="hi-line" lang="hi">'+esc(n.titleHi)+'</span>':'')+
@@ -790,14 +1034,14 @@ var NOTICES = [
 
   var rows=document.getElementById("noticeRows");
   rows.innerHTML=list.map(function(n,i){
-    var p=parts(n.date);
-    return '<tr><td class="sno">'+(i+1)+'</td><td class="dt">'+p.d+' '+p.m+' '+p.y+'</td>'+
-      '<td class="sub">'+esc(n.title)+(isNew(n.date)?'<span class="new">New</span>':'')+'<small>'+esc(n.detail)+'</small></td>'+
+    return '<tr><td class="sno">'+(i+1)+'</td><td class="dt">'+esc(when(n))+'</td>'+
+      '<td class="sub">'+esc(n.title)+(isNew(n.date)?'<span class="new">New</span>':'')+'<small>'+esc(n.detail)+'</small>'+
+        (n.link?'<a class="orig" href="'+esc(n.link)+'"'+(n.link.charAt(0)==="#"?'':' target="_blank" rel="noopener"')+'>'+esc(n.linkText||"View")+'</a>':'')+'</td>'+
       '<td class="sub sub-hi" lang="hi">'+esc(n.titleHi||"")+'<small>'+esc(n.detailHi||"")+'</small></td>'+
       '<td>'+esc(n.category)+'</td></tr>';
   }).join("");
 
-  var items=list.map(function(n){var p=parts(n.date);return '<a href="#notices">'+esc(n.title)+(n.titleHi?' / <span lang="hi">'+esc(n.titleHi)+'</span>':'')+' ('+p.d+' '+p.m+' '+p.y+')</a>';}).join("");
+  var items=list.map(function(n){return '<a href="#notices">'+esc(n.title)+(n.titleHi?' / <span lang="hi">'+esc(n.titleHi)+'</span>':'')+' ('+esc(when(n))+')</a>';}).join("");
   var tm=document.getElementById("tickMove");
   tm.innerHTML='<span>'+items+'</span><span class="dup" aria-hidden="true">'+items.replace(/<a /g,'<a tabindex="-1" ')+'</span>';
   tm.style.animationDuration=Math.max(30,Math.round((tm.scrollWidth/2)/70))+"s";
@@ -826,6 +1070,26 @@ var NOTICES = [
   });
   nav.addEventListener("click",function(e){if(e.target.closest("a"))closeNav();});
   document.addEventListener("keydown",function(e){if(e.key==="Escape")closeNav();});
+
+
+  /* Photo viewer: opens gallery photos and news clippings large, with previous/next inside each album */
+  var lb=document.getElementById("lb");
+  if(lb&&typeof lb.showModal==="function"){
+    var lbImg=document.getElementById("lbImg"),lbCap=document.getElementById("lbCap"),lbCount=document.getElementById("lbCount"),group=[],idx=0;
+    function show(i){idx=(i+group.length)%group.length;var a=group[idx];lbImg.src=a.getAttribute("href");lbImg.alt=a.querySelector("img").alt;lbCap.textContent=a.getAttribute("data-cap")||"";lbCount.textContent=group.length>1?(idx+1)+" / "+group.length:"";
+      document.getElementById("lbPrev").hidden=document.getElementById("lbNext").hidden=group.length<2;}
+    document.querySelectorAll(".photos a,.news a").forEach(function(a){
+      a.addEventListener("click",function(ev){ev.preventDefault();var box=a.closest(".photos,.news");group=Array.prototype.slice.call(box.querySelectorAll("a"));show(group.indexOf(a));lb.showModal();});
+    });
+    document.getElementById("lbClose").addEventListener("click",function(){lb.close();});
+    document.getElementById("lbPrev").addEventListener("click",function(){show(idx-1);});
+    document.getElementById("lbNext").addEventListener("click",function(){show(idx+1);});
+    lb.addEventListener("click",function(ev){if(ev.target===lb)lb.close();});
+    lb.addEventListener("keydown",function(ev){if(ev.key==="ArrowLeft")show(idx-1);if(ev.key==="ArrowRight")show(idx+1);});
+    lb.addEventListener("close",function(){lbImg.removeAttribute("src");});
+  }
+  /* Only one video plays at a time */
+  document.querySelectorAll("video").forEach(function(v){v.addEventListener("play",function(){document.querySelectorAll("video").forEach(function(o){if(o!==v)o.pause();});});});
 
   var top=document.getElementById("toTop");
   window.addEventListener("scroll",function(){top.hidden=window.scrollY<700;},{passive:true});
